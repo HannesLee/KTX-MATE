@@ -8,7 +8,7 @@ struct PlanDetailView: View {
     @Environment(\.dismiss) private var dismiss
     @Bindable var plan: TripPlan
 
-    @State private var ticketText = ""
+    @State private var seatText = ""
     @State private var alternatives: [TrainCandidate] = []
     @State private var loadingAlternatives = false
 
@@ -38,9 +38,9 @@ struct PlanDetailView: View {
                 }
 
                 Section("예매했나요?") {
-                    TextField("승차권 문자나 공유 내용을 붙여넣기 (선택)", text: $ticketText, axis: .vertical)
+                    TextField("좌석 (선택, 예: 5호차 12A)", text: $seatText)
                     Button("예매 완료로 표시") {
-                        Task { await service.markBooked(plan, ticketText: ticketText.isEmpty ? nil : ticketText, in: context) }
+                        Task { await service.markBooked(plan, seat: seatText, in: context) }
                     }
                 }
 

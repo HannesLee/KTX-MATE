@@ -66,12 +66,10 @@ final class PlanService {
         return created
     }
 
-    func markBooked(_ plan: TripPlan, ticketText: String?, in context: ModelContext) async {
-        if let text = ticketText {
-            let parsed = TicketTextParser.parse(text)
-            if let no = parsed.trainNo { plan.chosenTrainNo = no }
-            if let seat = parsed.seat { plan.seatInfo = seat }
-        }
+    /// 예매 완료는 사용자가 직접 표시한다 (좌석은 선택 입력).
+    func markBooked(_ plan: TripPlan, seat: String, in context: ModelContext) async {
+        let trimmed = seat.trimmingCharacters(in: .whitespaces)
+        if !trimmed.isEmpty { plan.seatInfo = trimmed }
         plan.status = .booked
         syncCalendar(plan)
         try? context.save()
