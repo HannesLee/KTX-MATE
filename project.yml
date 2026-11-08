@@ -1,0 +1,33 @@
+# XcodeGen 설정: `brew install xcodegen && xcodegen` 으로 KTXMate.xcodeproj 생성
+name: KTXMate
+options:
+  bundleIdPrefix: com.ktxmate
+  deploymentTarget:
+    iOS: "26.0"
+settings:
+  base:
+    SWIFT_VERSION: "5.0"
+    DEVELOPMENT_TEAM: "" # Xcode에서 본인 팀 선택
+targets:
+  KTXMate:
+    type: application
+    platform: iOS
+    sources: [KTXMate]
+    info:
+      path: KTXMate/Info.plist
+      properties:
+        CFBundleDisplayName: KTX MATE
+        UILaunchScreen: {}
+        NSCalendarsFullAccessUsageDescription: 예매 일정을 캘린더에 등록하고 예매 상태를 갱신하기 위해 캘린더 접근이 필요합니다.
+        NSCalendarsWriteOnlyAccessUsageDescription: 예매 일정을 캘린더에 등록하기 위해 필요합니다.
+        LSApplicationQueriesSchemes: [korailtalk]
+        TAGOServiceKey: $(TAGO_SERVICE_KEY)
+    settings:
+      base:
+        TAGO_SERVICE_KEY: "" # 공공데이터포털 인증키(Decoding 키). Secrets.xcconfig 로 빼는 것을 권장
+  KTXMateTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources: [KTXMateTests]
+    dependencies:
+      - target: KTXMate
