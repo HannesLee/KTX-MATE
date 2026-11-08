@@ -1,0 +1,44 @@
+{
+  "expo": {
+    "name": "KTX MATE",
+    "slug": "ktx-mate",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.hanneslee.ktxmate",
+      "infoPlist": {
+        "LSApplicationQueriesSchemes": [
+          "korailtalk"
+        ]
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#E6F4FE",
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "backgroundImage": "./assets/android-icon-background.png",
+        "monochromeImage": "./assets/android-icon-monochrome.png"
+      },
+      "predictiveBackGestureEnabled": false,
+      "package": "com.hanneslee.ktxmate"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "@react-native-community/datetimepicker",
+      "expo-sharing",
+      [
+        "expo-calendar",
+        {
+          "calendarPermission": "예매 일정을 캘린더에 등록하고 예매 상태를 갱신하기 위해 캘린더 접근이 필요합니다."
+        }
+      ],
+      "expo-notifications"
+    ],
+    "scheme": "ktxmate"
+  }
+}
